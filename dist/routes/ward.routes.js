@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.wardRouter = void 0;
+const express_1 = require("express");
+const ward_controller_1 = require("../controllers/ward.controller");
+const auth_1 = require("../middleware/auth");
+exports.wardRouter = (0, express_1.Router)();
+exports.wardRouter.get("/townPanchayat/:townPanchayatId", auth_1.authGuard, ward_controller_1.WardController.getAllByTownPanchayat);
+exports.wardRouter.get("/:id", auth_1.authGuard, ward_controller_1.WardController.getWardById);
+exports.wardRouter.post("/", auth_1.authGuard, ward_controller_1.WardController.createWard);
+exports.wardRouter.put("/:id", auth_1.authGuard, ward_controller_1.WardController.updateWard);
+exports.wardRouter.delete("/:id", auth_1.authGuard, ward_controller_1.WardController.deleteWard);

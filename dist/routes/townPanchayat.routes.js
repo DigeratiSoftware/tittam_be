@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.townPanchayatRouter = void 0;
+const express_1 = require("express");
+const townPanchayat_controller_1 = require("../controllers/townPanchayat.controller");
+const auth_1 = require("../middleware/auth");
+exports.townPanchayatRouter = (0, express_1.Router)();
+exports.townPanchayatRouter.get("/district/:districtId", auth_1.authGuard, townPanchayat_controller_1.TownPanchayatController.getAllByDistrict);
+exports.townPanchayatRouter.get("/:id", auth_1.authGuard, townPanchayat_controller_1.TownPanchayatController.getTownPanchayatById);
+exports.townPanchayatRouter.post("/", auth_1.authGuard, townPanchayat_controller_1.TownPanchayatController.createTownPanchayat);
+exports.townPanchayatRouter.put("/:id", auth_1.authGuard, townPanchayat_controller_1.TownPanchayatController.updateTownPanchayat);
+exports.townPanchayatRouter.delete("/:id", auth_1.authGuard, townPanchayat_controller_1.TownPanchayatController.deleteTownPanchayat);

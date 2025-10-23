@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.districtRouter = void 0;
+const express_1 = require("express");
+const auth_1 = require("../middleware/auth");
+const district_controller_1 = require("../controllers/district.controller");
+const districtRouter = (0, express_1.Router)();
+exports.districtRouter = districtRouter;
+districtRouter.get("/", auth_1.authGuard, district_controller_1.getAllDistricts);
+districtRouter.get("/:id", auth_1.authGuard, district_controller_1.getDistrictById);
+districtRouter.get("/zone/:zoneId", auth_1.authGuard, district_controller_1.getDistrictsByZone);
+districtRouter.post("/", auth_1.authGuard, district_controller_1.createDistrict);
+districtRouter.put("/:id", auth_1.authGuard, district_controller_1.updateDistrict);
+districtRouter.delete("/:id", auth_1.authGuard, district_controller_1.deleteDistrict);
