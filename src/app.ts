@@ -13,6 +13,10 @@ import { districtRouter } from './routes/district.routes';
 import { townPanchayatRouter } from './routes/townPanchayat.routes';
 import { wardRouter } from './routes/ward.routes';
 import { fieldRouter } from './routes/field.routes';
+import fileRoutes from "./routes/file.routes";
+import { config } from "./config";
+import path from "path";
+
 
 dotenv.config();
 
@@ -37,6 +41,10 @@ export const createServer = () => {
   app.use('/api/v1/town-panchayats', townPanchayatRouter);
   app.use('/api/v1/wards', wardRouter);
   app.use("/api/v1/fields", fieldRouter);
+
+  app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
+
+  app.use("/api/v1/files", fileRoutes);
 
 
   app.use(errorHandler);
