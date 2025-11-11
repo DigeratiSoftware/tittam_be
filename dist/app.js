@@ -19,11 +19,25 @@ const district_routes_1 = require("./routes/district.routes");
 const townPanchayat_routes_1 = require("./routes/townPanchayat.routes");
 const ward_routes_1 = require("./routes/ward.routes");
 const field_routes_1 = require("./routes/field.routes");
+const file_routes_1 = __importDefault(require("./routes/file.routes"));
+const path_1 = __importDefault(require("path"));
 dotenv_1.default.config();
 const createServer = () => {
     const app = (0, express_1.default)();
     app.use((0, helmet_1.default)());
     app.use((0, cors_1.default)());
+    // app.use(cors({
+    // origin: [
+    //   "https://preview-duplicate-of-react-typescript-app-kzmit8mlrj604rpt1w8f.vusercontent.net", // your v0 preview app"
+    //   "https://*.vusercontent.net", // v0.dev preview domains
+    //   "https://v0.dev",
+    //   "https://*.ngrok-free.app",
+    //   "http://localhost:3000"
+    // ],
+    //   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    //   allowedHeaders: ["Content-Type", "Authorization"],
+    //   credentials: true
+    // }));
     app.use(express_1.default.json());
     app.use((0, morgan_1.default)('dev'));
     app.use((0, express_rate_limit_1.default)({ windowMs: 60 * 1000, max: 100, standardHeaders: true, legacyHeaders: false }));
@@ -36,6 +50,8 @@ const createServer = () => {
     app.use('/api/v1/town-panchayats', townPanchayat_routes_1.townPanchayatRouter);
     app.use('/api/v1/wards', ward_routes_1.wardRouter);
     app.use("/api/v1/fields", field_routes_1.fieldRouter);
+    app.use("/uploads", express_1.default.static(path_1.default.join(__dirname, "../uploads")));
+    app.use("/api/v1/files", file_routes_1.default);
     app.use(error_1.errorHandler);
     return app;
 };

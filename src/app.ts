@@ -24,7 +24,19 @@ export const createServer = () => {
   const app = express();
 
   app.use(helmet());
-  app.use(cors());
+   app.use(cors());
+ // app.use(cors({
+  // origin: [
+  //   "https://preview-duplicate-of-react-typescript-app-kzmit8mlrj604rpt1w8f.vusercontent.net", // your v0 preview app"
+  //   "https://*.vusercontent.net", // v0.dev preview domains
+  //   "https://v0.dev",
+  //   "https://*.ngrok-free.app",
+  //   "http://localhost:3000"
+  // ],
+//   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+//   allowedHeaders: ["Content-Type", "Authorization"],
+//   credentials: true
+// }));
   app.use(express.json());
   app.use(morgan('dev'));
   app.use(
