@@ -19,6 +19,7 @@ const district_routes_1 = require("./routes/district.routes");
 const townPanchayat_routes_1 = require("./routes/townPanchayat.routes");
 const ward_routes_1 = require("./routes/ward.routes");
 const field_routes_1 = require("./routes/field.routes");
+const work_routes_1 = __importDefault(require("./routes/work.routes"));
 const file_routes_1 = __importDefault(require("./routes/file.routes"));
 const path_1 = __importDefault(require("path"));
 dotenv_1.default.config();
@@ -50,6 +51,7 @@ const createServer = () => {
     app.use('/api/v1/town-panchayats', townPanchayat_routes_1.townPanchayatRouter);
     app.use('/api/v1/wards', ward_routes_1.wardRouter);
     app.use("/api/v1/fields", field_routes_1.fieldRouter);
+    app.use("/api/v1/work", work_routes_1.default);
     app.use("/uploads", express_1.default.static(path_1.default.join(__dirname, "../uploads")));
     app.use("/api/v1/files", file_routes_1.default);
     app.use(error_1.errorHandler);

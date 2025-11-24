@@ -13,6 +13,7 @@ import { districtRouter } from './routes/district.routes';
 import { townPanchayatRouter } from './routes/townPanchayat.routes';
 import { wardRouter } from './routes/ward.routes';
 import { fieldRouter } from './routes/field.routes';
+import  workRouter  from './routes/work.routes';
 import fileRoutes from "./routes/file.routes";
 import { config } from "./config";
 import path from "path";
@@ -53,6 +54,7 @@ export const createServer = () => {
   app.use('/api/v1/town-panchayats', townPanchayatRouter);
   app.use('/api/v1/wards', wardRouter);
   app.use("/api/v1/fields", fieldRouter);
+  app.use("/api/v1/work", workRouter);
 
   app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
 
